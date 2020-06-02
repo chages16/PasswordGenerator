@@ -11,6 +11,13 @@
 <h2>Password Generator</h2>
 <div class="centre">
     <button type="button" class="btn btn-secondary btn-sm" onclick="passwordgen()">Password Generator</button>
+    <br>
+    <div class="box"></div>
+    <br>
+    <h4> Your password is...</h4>
+    <br>
+    <p id="result"></p>
+    </div>
 </div>
     <script>
         function passwordgen() {
@@ -131,7 +138,8 @@
             passwordcomplete = passwordcomplete.replace(" ", "-");
             alert("Final password is " + passwordcomplete);
             console.log (passwordcomplete);
-            document.write("Your password is....  " + passwordcomplete);
+
+            document.getElementById("result").innerHTML = passwordcomplete;
         }
         
     </script>

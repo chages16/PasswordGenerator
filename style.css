@@ -15,4 +15,7 @@ h2 {
   .centre {
       text-align: center;
   }
-  }
+  
+    #result {
+        font-style: italic;
+    }
