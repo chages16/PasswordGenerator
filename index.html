@@ -39,7 +39,7 @@
                
             var confirmphrase = confirm("Would you like to use a pre-defined phrase, word or number pattern within your password?");
             if (confirmphrase) {
-                alert ("Phrase must be less then half the total character length!!!");
+                alert ("Phrase must be less then half the total character length!!! Avoid Spaces!!!");
             var passwordphrase = prompt("Type phrase here");
                 if (passwordphrase.length > charlength/2) {
                 alert ("Phrase is too long, try again");
@@ -135,6 +135,7 @@
             var passwordcomplete2 = (passwordcomplete.replaceAt(Math.floor(Math.random()*(passwordcomplete.length-passwordphrase.length)), passwordphrase));
             var passwordcomplete = passwordcomplete2;
         }
+            
             passwordcomplete = passwordcomplete.replace(" ", "-");
             alert("Final password is " + passwordcomplete);
             console.log (passwordcomplete);
