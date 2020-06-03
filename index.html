@@ -10,8 +10,10 @@
 <body>
 <h2>Password Generator</h2>
 <div class="centre">
-    <button type="button" class="btn btn-secondary btn-sm" onclick="passwordgen()">Password Generator</button>
-    <br>
+    <button type="button" class="btn btn-secondary btn-sm" onclick="passwordgen()">Complex Password Generator</button>
+    <br><br>
+    <button type="button" class="btn btn-secondary btn-sm quick" onclick="QuickPassword()"> QuickPassword Generator</button>
+
     <div class="box"></div>
     <br><br>
     <h5 id="textdisplay"> Your password is...</h5>
@@ -20,10 +22,11 @@
 
 </div>
     <script>
-        function passwordgen() {
-            String.prototype.replaceAt = function(index, replacement) {
+        String.prototype.replaceAt = function(index, replacement) {
             return this.substr(0, index) + replacement + this.substr(index + replacement.length);
             }
+        function passwordgen() {
+            
 
             alert("Time to choose a password");
             var charlength = prompt("How many characters do you want the password to be (select number only between 8 and 128)");
@@ -39,9 +42,10 @@
                
             var confirmphrase = confirm("Would you like to use a pre-defined phrase, word or number pattern within your password?");
             if (confirmphrase) {
-                alert ("Phrase must be less then half the total character length!!! Spaces will be replaced with dashes!!!");
+                var phraselength = charlength-4
+                alert ("Phrase must contain no more than " + phraselength + " characters . Spaces will be replaced with dashes!!!");
             var passwordphrase = prompt("Type phrase here");
-                if (passwordphrase.length > charlength/2) {
+                if (passwordphrase.length > charlength - 4) {
                 alert ("Phrase is too long, try again");
                 var passwordphrase = "";
                 return;
@@ -49,6 +53,19 @@
                 else {
                     alert("Your Password phrase is " + passwordphrase);
                     console.log("Passwordphrase: " + passwordphrase);
+                    alert("Now you can choose if you want the phrase at the beginning, end or at a random part of your password");
+                    var beginning = confirm("Do you want the phrase at the BEGINNING of your password?");
+                    var phraseposition=0;
+                        if (beginning == false) {
+                        var ending = confirm("Do you want the phrase at the END of your password?");
+                        }
+                        if (ending == false) {
+                            alert("Password will be placed randomly")
+                            var phraseposition = Math.floor(Math.random()*(charlength-passwordphrase.length));
+                             }
+                             else if (ending == true) {
+                                 var phraseposition= charlength-passwordphrase.length;
+                             }
                 }
             }
             else {
@@ -129,15 +146,16 @@
                 }
                 }
           
-                alert("Done...");
+
 
             if(passwordphrase.length > -1) {
-            var passwordcomplete2 = (passwordcomplete.replaceAt(Math.floor(Math.random()*(passwordcomplete.length-passwordphrase.length)), passwordphrase));
+            var passwordcomplete2 = (passwordcomplete.replaceAt(phraseposition, passwordphrase));
             var passwordcomplete = passwordcomplete2;
         }
             
+            
             passwordcomplete = passwordcomplete.replace(/\s/g, "-");
-            alert("Final password is " + passwordcomplete);
+                        alert("Final password is " + passwordcomplete);
             console.log ("Final password" + passwordcomplete);
 
             document.getElementById("result").innerHTML = passwordcomplete;
@@ -146,6 +164,85 @@
 
         }
         
+
+        function QuickPassword() {
+            alert("Time to choose a password");
+            var charlength = prompt("How many characters do you want the password to be (select number only between 8 and 128)");
+           
+            if(charlength >7 && charlength< 129) {
+            var charlength = Math.floor(charlength);
+            alert("Your password will be " + charlength + " characters long");
+        }
+            else {
+            alert("You have input incorrectly- try again");
+            return;
+        }
+               
+            
+
+            var passwordcomplete = "";
+            var letters=["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+            console.log(letters[(Math.floor(Math.random()*24))].charAt(0));
+            console.log(passwordcomplete.charAt(0));
+            var numbers= ["0","1","2","3","4","5","6","7","8","9"];
+            var symbols= ["!","@","#","%","&","(","$",")","{","}","?","/",">","]"]
+            var capitals= ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+
+
+                for (var ia = 0; ia < charlength; ia++) {
+                passwordcomplete += letters[(Math.floor(Math.random()*letters.length))].charAt(0);
+                console.log(passwordcomplete);
+                }
+                alert("Initialising new password!")
+
+                
+   
+                for (var icap = 0; icap < charlength; icap++) {
+                var numberstest = Math.floor((Math.random())*6);
+                console.log(numberstest);
+                if (numberstest > 2) {
+                var passwordcomplete2 = passwordcomplete.replaceAt(icap, capitals[(Math.floor(Math.random()*capitals.length))]);
+                console.log(passwordcomplete2);
+                var passwordcomplete = passwordcomplete2;
+                }
+            }
+
+
+                for (var ib = 0; ib < charlength; ib++) {
+                var numberstest = Math.floor((Math.random())*5);
+                console.log(numberstest);
+                if (numberstest > 2) {
+                var passwordcomplete2 = passwordcomplete.replaceAt(ib, numbers[(Math.floor(Math.random()*numbers.length))]);
+                console.log(passwordcomplete2);
+                var passwordcomplete = passwordcomplete2;
+
+              }
+                
+                }
+                
+
+               
+                for (var ic = 0; ic < charlength; ic++) {
+                var numberstest2 = Math.floor((Math.random())*5);
+                console.log(numberstest2);
+                if (numberstest2 > 2) {
+                var passwordcomplete2 = passwordcomplete.replaceAt(ic, symbols[(Math.floor(Math.random()*symbols.length))]);
+                console.log(passwordcomplete2);
+                var passwordcomplete = passwordcomplete2;
+
+              }
+            
+                }
+          
+
+            alert("Final password is " + passwordcomplete);
+            console.log ("Final password" + passwordcomplete);
+
+            document.getElementById("result").innerHTML = passwordcomplete;
+            var xi2 = document.getElementById("textdisplay");
+            xi2.style.display = "block";
+
+        }
     </script>
 
 </body>
