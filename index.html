@@ -51,7 +51,7 @@
             var confirmphrase = confirm("Would you like to use a pre-defined phrase, word or number pattern within your password?");
             if (confirmphrase) {
                 var phraselength = charlength-4
-                alert ("Phrase must contain no more than " + phraselength + " characters . Spaces will be replaced with dashes!!!");
+                alert ("Phrase must contain no more than " + phraselength + " characters . Spaces will be replaced with dashes and '<'s will be replaced with '('s!!!");
             var passwordphrase = prompt("Type phrase here");
                 if (passwordphrase.length > charlength - 4) {
                 alert ("Phrase is too long, try again");
@@ -59,7 +59,7 @@
                 return;
             }
                 else {
-                    alert("Your Password phrase is " + passwordphrase);
+                    alert("Your Password phrase is ---> ' " + passwordphrase + " ' ---> Blank spaces and '<'s will be replaced.");
                     
                 /*     // (User can select where the phrase appears- this will alter the phraseposition value which
                     affects the placement at the end of the function */
@@ -185,8 +185,13 @@
             var passwordcomplete = passwordcomplete2;
         }
 
-            //replace spaces within the password that may have been input in the phrase
+            //replace spaces and any < within the password that may have been input in the phrase
             passwordcomplete = passwordcomplete.replace(/\s/g, "-");
+
+            for (issy=0; issy < charlength - 4; issy++){
+                passwordcomplete = passwordcomplete.replace("<", "(");
+            }
+
 
             console.log("password " + passwordcomplete)
             
@@ -370,7 +375,7 @@
             console.log("password " + passwordcomplete)
         }
 
-            alert("Final password is " + passwordcomplete);
+            alert("Your quick password is " + passwordcomplete);
             //  ("Final password" + passwordcomplete);
 
             document.getElementById("result").innerHTML = passwordcomplete;
