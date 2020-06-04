@@ -30,7 +30,7 @@
 
         //Complex Password Generator function
         function passwordgen() {
-            
+            console.log("Running full password gen");
 
             alert("Time to choose a password");
 
@@ -193,7 +193,7 @@
             }
 
 
-            console.log("password " + passwordcomplete)
+            // console.log("password " + passwordcomplete)
             
             //Runs a loop to see how many capital letters appear. Adds 1 to variable if they do.
             for (t1=0; t1 < capitals.length; t1++) {
@@ -206,7 +206,7 @@
             //Runs a loop to see how many numbers appear. Adds 1 to variable if they do.
             for (t2=0; t2 < numbers.length; t2++) {
                var charcode = passwordcomplete.indexOf(numbers[t2]);
-               console.log(charcode) 
+               // console.log(charcode) 
                if (charcode > -1){
                    numbercount++;
                }
@@ -235,7 +235,9 @@
             else {
                 criteria = 0;
             }
-            console.log("password " + passwordcomplete)
+            console.log("Temp Password " + passwordcomplete);
+            var loopcount = ix + 1;
+            console.log("loopcount: " + loopcount);
         }
 
 
@@ -256,6 +258,7 @@
         // Quick function- ALL parameters will appear, no phrase is set. Only user variable is length.
 
         function QuickPassword() {
+            console.log("Running full password gen");
             alert("Time to choose a password");
             var charlength = prompt("How many characters do you want the password to be (select number only between 8 and 128)");
            
@@ -343,7 +346,7 @@
             //number test
             for (t2=0; t2 < numbers.length; t2++) {
                var charcode = passwordcomplete.indexOf(numbers[t2]);
-               console.log(charcode) 
+               // console.log(charcode) 
                if (charcode > -1){
                    numbercount++;
                }
@@ -372,11 +375,13 @@
             else {
                 criteria = 0;
             }
-            console.log("password " + passwordcomplete)
+            console.log("Temp Password " + passwordcomplete);
+            var loopcount = ix + 1;
+            console.log("loopcount: " + loopcount);
         }
 
             alert("Your quick password is " + passwordcomplete);
-            //  ("Final password" + passwordcomplete);
+            console.log("Final password" + passwordcomplete);
 
             document.getElementById("result").innerHTML = passwordcomplete;
             var xi2 = document.getElementById("textdisplay");
