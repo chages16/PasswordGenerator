@@ -257,6 +257,8 @@
 
         // Quick function- ALL parameters will appear, no phrase is set. Only user variable is length.
 
+        //select password length
+
         function QuickPassword() {
             console.log("Running full password gen");
             alert("Time to choose a password");
@@ -270,7 +272,8 @@
             alert("You have input incorrectly- try again");
             return;
         }
-               
+
+        //set variables and criteria loop so password won't be accepted until all parameters appear   
         var criteria = 0;
 
         for (var ix = 0; criteria < 1; ix++) {
@@ -290,6 +293,7 @@
             var capitals= ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
 
 
+            // generate lower case temp password
                 for (var ia = 0; ia < charlength; ia++) {
                 passwordcomplete += letters[(Math.floor(Math.random()*letters.length))].charAt(0);
                 // (passwordcomplete);
@@ -297,7 +301,7 @@
                 alert("Initialising new password!")
 
                 
-   
+             //insert Capitals randomly  
                 for (var icap = 0; icap < charlength; icap++) {
                 var numberstest = Math.floor((Math.random())*6);
                 // (numberstest);
@@ -308,7 +312,7 @@
                 }
             }
 
-
+             //insert numbers randomly 
                 for (var ib = 0; ib < charlength; ib++) {
                 var numberstest = Math.floor((Math.random())*5);
                 // (numberstest);
@@ -322,7 +326,7 @@
                 }
                 
 
-               
+             //insert symbols randomly 
                 for (var ic = 0; ic < charlength; ic++) {
                 var numberstest2 = Math.floor((Math.random())*5);
                 // (numberstest2);
@@ -335,7 +339,7 @@
             
                 }
           
-                            //letter test
+            //capital letter test
             for (t1=0; t1 < capitals.length; t1++) {
                var charcode = passwordcomplete.indexOf(capitals[t1]); 
                if (charcode > -1){
@@ -368,7 +372,7 @@
                }
             }
 
-            //final test
+            //If all parameters AND lowercase letters appear in the password, loop will close, else the loop will rerun
             if (symbolcount > 0 && numbercount > 0 && lettercount > 0&& lowercasecount > 0){
                 criteria = 1;
             }
